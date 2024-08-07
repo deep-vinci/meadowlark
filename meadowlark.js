@@ -13,26 +13,23 @@ app.use(express.static(__dirname + "/public"));
 app.set("port", process.env.PORT || 5000);
 
 app.get("/", (req, res) => {
-    res.type("text/plain");
-    res.send("MeadowLark Travel");
+    res.render("home", {
+        name: "Shivam"
+    });
 })
 
 app.get("/about", (req, res) => {
-    res.type("text/plain");
-    res.send("About MeadowLark Travel")
+    res.render("about");
 })
 
 app.use((req, res) => {
-    res.type("text/plain");
     res.status(404);
-    res.send("404 - Not Found");
+    res.render("404")
 })
 
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.type("text/plain");
     res.status(500);
-    res.send("500 - Server Error")
+    res.render("500")
 });
 
 app.listen(app.get("port"), () => {
