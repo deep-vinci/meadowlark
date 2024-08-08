@@ -1,3 +1,5 @@
+let fortune = require("./lib/fortune.js");
+
 let express = require("express");
 let handlebars = require("express3-handlebars").create({
     defaultLayout: "main"
@@ -14,7 +16,7 @@ app.set("port", process.env.PORT || 5000);
 
 app.get("/", (req, res) => {
     res.render("home", {
-        name: "Shivam"
+        fortuneCookie: fortune.getFortune()
     });
 })
 
